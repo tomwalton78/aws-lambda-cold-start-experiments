@@ -21,13 +21,13 @@ public class Stack extends software.amazon.awscdk.core.Stack {
         // Create a layer from the layer module
         final LayerVersion layer = new LayerVersion(this, "layer", LayerVersionProps.builder()
                 .code(Code.fromAsset("../layer/target/bundle"))
-                .compatibleRuntimes(Arrays.asList(Runtime.JAVA_8))
+                .compatibleRuntimes(Arrays.asList(Runtime.JAVA_11))
                 .build()
         );
 
         // The code that defines your stack goes here
         new Function(this, "ColdStartJavaFunction", FunctionProps.builder()
-                .runtime(Runtime.JAVA_8)
+                .runtime(Runtime.JAVA_11)
                 .code(Code.fromAsset("../lambdas/target/lambdas.jar"))
                 .handler("lambdas.ExampleLambda")
                 .layers(Arrays.asList(layer))
