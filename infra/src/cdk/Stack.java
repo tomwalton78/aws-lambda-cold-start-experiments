@@ -26,14 +26,15 @@ public class Stack extends software.amazon.awscdk.core.Stack {
         );
 
         // The code that defines your stack goes here
-        new Function(this, "JavaFn", FunctionProps.builder()
+        new Function(this, "ColdStartJavaFunction", FunctionProps.builder()
                 .runtime(Runtime.JAVA_8)
                 .code(Code.fromAsset("../lambdas/target/lambdas.jar"))
                 .handler("lambdas.ExampleLambda")
                 .layers(Arrays.asList(layer))
-                .memorySize(1024)
+                .memorySize(512)
                 .timeout(Duration.seconds(30))
                 .logRetention(RetentionDays.ONE_WEEK)
+                .functionName("ColdStartJavaFunction")
                 .build());
     }
 

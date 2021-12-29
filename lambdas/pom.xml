@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>monorepo-webhook-lambdas</artifactId>
     <parent>
-        <groupId>dev.kerrywilson.aws</groupId>
-        <artifactId>lambda-mvn-cdk</artifactId>
+        <groupId>com.mycompany.myapp</groupId>
+        <artifactId>my-app</artifactId>
         <version>0.1</version>
     </parent>
     <build>
@@ -21,11 +21,6 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
             <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kohsuke</groupId>
-            <artifactId>github-api</artifactId>
-            <version>1.132</version>
         </dependency>
     </dependencies>
 </project>
