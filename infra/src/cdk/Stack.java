@@ -12,6 +12,8 @@ import software.amazon.awscdk.services.iam.ServicePrincipal;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.lambda.*;
 import software.amazon.awscdk.services.logs.RetentionDays;
+import software.amazon.awscdk.services.s3.Bucket;
+import software.amazon.awscdk.services.s3.BucketProps;
 
 import java.util.Arrays;
 
@@ -62,6 +64,11 @@ public class Stack extends software.amazon.awscdk.core.Stack {
             .build())
         .tableName("testTable")
         .build());
+
+    Bucket bucket = new Bucket(this, "test-s3-bucket", BucketProps.builder()
+        .bucketName("my-test-3-bucket-for-aws-lambda-cold-start-experiments")
+        .build());
+    bucket.grantWrite(lambdaRole);
 
   }
 

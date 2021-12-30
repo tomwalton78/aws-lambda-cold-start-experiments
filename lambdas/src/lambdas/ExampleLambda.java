@@ -17,11 +17,13 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
 
     private final ObjectMapper objectMapper;
     private final DynamoWriter dynamoWriter;
+    private final S3Writer s3Writer;
 
     public ExampleLambda() {
         Injector injector = Guice.createInjector(new LambdaModule());
         this.objectMapper = injector.getInstance(ObjectMapper.class);
         this.dynamoWriter = injector.getInstance(DynamoWriter.class);
+        this.s3Writer = injector.getInstance(S3Writer.class);
     }
 
     @Override
@@ -33,6 +35,8 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
         doJacksonWork(event, context);
 
         doWriteToDynamoWork();
+
+        doWriteToS3Work();
 
         return null;
     }
@@ -61,5 +65,12 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
         LOGGER.info("Starting writing to Dynamo work");
         this.dynamoWriter.writeData();
         LOGGER.info("Finished writing to Dynamo work");
+    }
+
+
+    private void doWriteToS3Work() {
+        LOGGER.info("Starting writing to S3 work");
+        this.s3Writer.writeObject();
+        LOGGER.info("Finished writing to S3 work");
     }
 }
