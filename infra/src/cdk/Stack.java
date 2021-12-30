@@ -35,7 +35,8 @@ public class Stack extends software.amazon.awscdk.core.Stack {
         .assumedBy(new ServicePrincipal("lambda.amazonaws.com"))
         .managedPolicies(Arrays.asList(
             ManagedPolicy.fromAwsManagedPolicyName("CloudWatchFullAccess"),
-            ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
+            ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess"),
+            ManagedPolicy.fromAwsManagedPolicyName("AWSXrayFullAccess")
         ))
         .build());
 
@@ -50,6 +51,7 @@ public class Stack extends software.amazon.awscdk.core.Stack {
         .logRetention(RetentionDays.ONE_WEEK)
         .functionName("ColdStartJavaFunction")
         .role(lambdaRole)
+        .tracing(Tracing.ACTIVE)
         .build());
 
     new Table(this, "testTable", TableProps.builder()
