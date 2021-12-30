@@ -1,6 +1,14 @@
-# aws-lambda-maven-cdk
+# aws-lambda-cold-start-experiments
 
-Deploying Java lambda with Maven and CDK
+Contains code (CDK infrastructure and Java lambda function) used in experiments on AWS Lambda cold start latency when using Java.
+
+Prerequisites: https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
+
+This is a project for Java development with CDK.
+
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
+
+It is a [Maven](https://maven.apache.org/) based project, so you can open this project with any Maven compatible Java IDE to build and run tests.
 
 ## Commands
 
