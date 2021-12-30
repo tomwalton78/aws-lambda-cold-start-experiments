@@ -16,10 +16,12 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
     private static final Logger LOGGER = LogManager.getLogger(ExampleLambda.class);
 
     private final ObjectMapper objectMapper;
+    private final DynamoWriter dynamoWriter;
 
     public ExampleLambda() {
         Injector injector = Guice.createInjector(new LambdaModule());
         this.objectMapper = injector.getInstance(ObjectMapper.class);
+        this.dynamoWriter = injector.getInstance(DynamoWriter.class);
     }
 
     @Override
@@ -29,6 +31,8 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
         doGuavaWork();
 
         doJacksonWork(event, context);
+
+        doWriteToDynamoWork();
 
         return null;
     }
@@ -51,5 +55,11 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
         }
 
         LOGGER.info("Finishing Jackson work");
+    }
+
+    private void doWriteToDynamoWork() {
+        LOGGER.info("Starting writing to Dynamo work");
+        this.dynamoWriter.writeData();
+        LOGGER.info("Finished writing to Dynamo work");
     }
 }
