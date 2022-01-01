@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.Inject;
 
 import java.util.UUID;
 
@@ -14,7 +13,6 @@ public class DynamoWriter {
   private static final String PARTITION_KEY = "id";
   private final AmazonDynamoDB dynamoDB;
 
-  @Inject
   public DynamoWriter(AmazonDynamoDB dynamoDB) {
     this.dynamoDB = dynamoDB;
   }

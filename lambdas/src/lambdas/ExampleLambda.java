@@ -1,15 +1,14 @@
 package lambdas;
 
-import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
 
 public class ExampleLambda implements RequestHandler<Map<String, String>, String> {
 
@@ -20,10 +19,10 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
     private final S3Writer s3Writer;
 
     public ExampleLambda() {
-        Injector injector = Guice.createInjector(new LambdaModule());
-        this.objectMapper = injector.getInstance(ObjectMapper.class);
-        this.dynamoWriter = injector.getInstance(DynamoWriter.class);
-        this.s3Writer = injector.getInstance(S3Writer.class);
+        this.objectMapper = new ObjectMapper();
+        MyComponent myComponent = DaggerMyComponent.create();
+        this.dynamoWriter = new DynamoWriter(myComponent.buildAmazonDynamoDB());
+        this.s3Writer = new S3Writer(myComponent.buildAmazonS3());
     }
 
     @Override
@@ -66,7 +65,6 @@ public class ExampleLambda implements RequestHandler<Map<String, String>, String
         this.dynamoWriter.writeData();
         LOGGER.info("Finished writing to Dynamo work");
     }
-
 
     private void doWriteToS3Work() {
         LOGGER.info("Starting writing to S3 work");

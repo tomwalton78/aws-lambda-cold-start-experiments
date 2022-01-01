@@ -7,11 +7,13 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.name.Named;
+import dagger.Module;
+import dagger.Provides;
 
-public class LambdaModule extends AbstractModule {
+import javax.inject.Named;
+
+@Module
+public class LambdaModule {
 
   @Provides
   AmazonDynamoDB providesDynamoDbClient(@Named("Region") String region) {

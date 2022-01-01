@@ -3,7 +3,6 @@ package lambdas;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.google.inject.Inject;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
@@ -15,7 +14,6 @@ public class S3Writer {
 
   private final AmazonS3 amazonS3;
 
-  @Inject
   public S3Writer(AmazonS3 amazonS3) {
     this.amazonS3 = amazonS3;
   }
