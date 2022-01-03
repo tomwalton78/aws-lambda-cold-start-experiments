@@ -1,0 +1,11 @@
+Configuration,Test run,Initialization time (s),Invocation time (s)
+Original,1,0,4.4
+Original,2,0,4
+Original,3,0,3.7
+Original,4,0,3.8
+Original,5,0,4.1
+"Pre-call services, 4 GB memory",1,0,0.16
+"Pre-call services, 4 GB memory",2,0,0.17
+"Pre-call services, 4 GB memory",3,0,0.18
+"Pre-call services, 4 GB memory",4,0,0.14
+"Pre-call services, 4 GB memory",5,0,0.16

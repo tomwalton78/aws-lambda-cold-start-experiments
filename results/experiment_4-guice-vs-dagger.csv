@@ -1,0 +1,11 @@
+DI Framework,Test run,Initialization time (s),Invocation time (s)
+Guice,1,3.9,4.3
+Guice,2,3.7,3.9
+Guice,3,3.8,3.8
+Guice,4,3.8,3.9
+Guice,5,3.8,4.4
+Dagger,1,3.5,4.9
+Dagger,2,3.4,4.2
+Dagger,3,3.4,4.4
+Dagger,4,3.5,4.3
+Dagger,5,3.2,3.7
