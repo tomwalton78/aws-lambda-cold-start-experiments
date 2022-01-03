@@ -15,5 +15,5 @@ for i in $(seq 1 $repeats);
 do
   echo "Starting test run ${i}"
   # Run in background so all invocations occur at once, and all will be a cold start
-  aws lambda invoke --function-name ColdStartJavaFunction --qualifier testPC /dev/null &
+  aws lambda invoke --function-name ColdStartJavaFunction /dev/null &
 done
